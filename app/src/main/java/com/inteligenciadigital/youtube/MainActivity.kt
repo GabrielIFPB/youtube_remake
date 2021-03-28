@@ -2,6 +2,8 @@ package com.inteligenciadigital.youtube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
 import com.google.gson.GsonBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
+		setSupportActionBar(toolbar)
+		supportActionBar?.title = ""
 
 		val videos = mutableListOf<Video>()
 
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 					videos.addAll(listVideo.data)
 					videos.addAll(listVideo.data)
 					videoAdapter.notifyDataSetChanged()
-					motion_container.removeView(progress_recycle)
+					progress_recycle.visibility = View.GONE
 				}
 			}
 
@@ -60,5 +64,10 @@ class MainActivity : AppCompatActivity() {
 		} catch (e: Exception) {
 			null
 		}
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+		menuInflater.inflate(R.menu.main_menu, menu)
+		return super.onCreateOptionsMenu(menu)
 	}
 }
