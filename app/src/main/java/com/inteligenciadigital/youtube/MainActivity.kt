@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity() {
 			}
 
 		}
-//
-//		CoroutineScope(Dispatcher.IO).launch {
-//
-//		}
 	}
 
 	private fun getVideo(): ListVideo? {
