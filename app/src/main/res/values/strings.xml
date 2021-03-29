@@ -3,4 +3,5 @@
 	<string name="shawn_mendes_camila_cabello_se_orita">Shawn Mendes, Camila Cabello - Señorita</string>
 	<string name="shawmmendesvevo_433_views_1_month_ago">ShawmMendesVEVO - 433 views - 1 month ago</string>
     <string name="info">%1$s - %2$s views - %3$s</string>
+	<string name="duration_time">00:00</string>
 </resources>

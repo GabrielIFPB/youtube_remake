@@ -6,8 +6,9 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	app:layoutDescription="@xml/scene"
-	app:showPaths="true"
 	tools:context=".MainActivity">
+
+<!--	app:showPaths="true"-->
 
 
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
