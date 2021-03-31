@@ -7,8 +7,10 @@ import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.gson.GsonBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.video_detail.*
+import kotlinx.android.synthetic.main.video_detail_content.*
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -16,6 +18,7 @@ import okhttp3.Request
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var videoAdapter: VideoAdapter
+	private lateinit var youtubePlayer: YoutubePlayer
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -48,6 +51,14 @@ class MainActivity : AppCompatActivity() {
 				}
 			}
 		}
+
+		this.preparePlayer()
+	}
+
+	private fun preparePlayer() {
+
+		this.youtubePlayer = YoutubePlayer(this)
+		surface_player.holder.addCallback(this.youtubePlayer)
 	}
 
 	private fun showOverlayView(video: Video) {
@@ -77,6 +88,19 @@ class MainActivity : AppCompatActivity() {
 			}
 
 		})
+
+		video_player.visibility = View.GONE
+		this.youtubePlayer.setUrl(video.videoUrl)
+
+		val detailAdapter = VideoDetailAdapter(videos())
+		rv_similar.layoutManager = LinearLayoutManager(this)
+		rv_similar.adapter = detailAdapter
+
+		content_channel.text = video.publisher.name
+		content_title.text = video.title
+		Picasso.get().load(video.publisher.pictureProfileUrl).into(img_channel)
+
+		detailAdapter.notifyDataSetChanged()
 	}
 
 	private fun getVideo(): ListVideo? {
@@ -102,5 +126,15 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.main_menu, menu)
 		return super.onCreateOptionsMenu(menu)
+	}
+
+	override fun onDestroy() {
+		this.youtubePlayer.release()
+		super.onDestroy()
+	}
+
+	override fun onPause() {
+		this.youtubePlayer.pause()
+		super.onPause()
 	}
 }
