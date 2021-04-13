@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.inteligenciadigital.youtube.TouchMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/motion_container"
@@ -9,7 +9,6 @@
 	tools:context=".MainActivity">
 
 <!--	app:showPaths="true"-->
-
 
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/main_coordinator"
@@ -69,4 +68,4 @@
 
 	</FrameLayout>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</com.inteligenciadigital.youtube.TouchMotionLayout>
